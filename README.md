@@ -1,44 +1,84 @@
-# M&M-task
-Instructions:
+# Stock Data Analysis
+This project is designed for quantitative analysis of stock data, covering various aspects from data manipulation to performance analysis. Below are instructions on how to run the code, assumptions made during development, and additional notes on implementation choices.
 
-This test is designed to evaluate your proficiency in using Pandas for data manipulation tasks.
-You are required to write Python code using Pandas to solve each task.
-Make sure your code is efficient, well-structured, and handles exceptions appropriately.
-Provide comments where necessary to explain your thought process.
-Submit your solutions as a single Python file and output files.
+## Project Structure
+``` 
+your_project/
+├── main.py
+├── data_processing.py
+├── data/
+└── monthData/
 
-Task 1: Data Exploration and Manipulation
+Add datasets in csv format which provided.
+```
 
-Given a CSV file stocks.csv containing daily stock price data with columns date, open, high, low, close, volume, Name perform the following tasks:
+## How to Run the Code
+Environment Setup:
 
-a) Read the data into a Pandas DataFrame.
-b) Calculate the average closing price (close) for each unique ticker and save the data in stock_data.csv with name, avgPrice as columns.
-c) Calculate the daily percentage change in the closing price (close) for each ticker and save seperate csv in data/{Name}.csv
+Ensure Python 3.x is installed on your machine.
+Install required packages by running `pip install -r requirements.txt` in your terminal.
+Input Data:
 
-Task 2: Time Series Analysis
+Place your data files ('stocks.csv', 'fundamentals.csv', 'prices.csv') in the root directory of the project.
+Execution:
 
-Given the same stocks.csv dataset, perform the following tasks:
+Open a terminal or command prompt.
+Navigate to the project directory.
+Run the command: `python main.py`
+Output:
 
-a) Resample the data to a monthly frequency, taking the average of Open, High, Low, Close, and summing Volume and save seperate csv in monthData/{Name}.csv.
-b) Calculate the rolling 30-day average of the closing price (Close) for each ticker and a column in data/{Name}.csv.
+Results will be saved in the following directories:
+stock_data.csv: Average closing prices for each ticker.
+data/{name}.csv: Daily percentage changes for each ticker.
+monthData/{name}.csv: Resampled monthly data for each ticker.
+stockInfo.csv: Calculated market capitalization data.
+data/{name}.csv: Performance metrics (profit/loss, cumulative P/L, drawdowns) for each ticker.
+Plots:
+plots/cumulative_pnl.png: Cumulative Profit and Loss visualization.
+plots/drawdown.png: Drawdown visualization.
+Assumptions Made
+Data Consistency: It is assumed that input data files ('stocks.csv', 'fundamentals.csv', 'prices.csv') are correctly formatted with necessary columns ('Ticker', 'Date', 'Close', 'Shares Outstanding', 'Price').
 
-Task 3: Data Merging and Joining
+Date Parsing: Dates in the input data are assumed to be in a format compatible with Pandas datetime parsing.
 
-Given two CSV files: fundamentals.csv containing fundamental data like Ticker, MarketCap, and Sector, and prices.csv containing price data like Ticker and Price, perform the following tasks:
+## Additional Notes
+Error Handling: The code includes robust error handling to manage scenarios like missing files, missing columns, and data processing errors. Errors are logged with details to aid in debugging.
 
-a) Read both files into separate Pandas DataFrames.
-b) Merge the two DataFrames on the Ticker column.
-c) Calculate the market capitalization (MarketCap) to price ratio for each ticker and save the csv as stockInfo.csv
+Performance: Utilization of Pandas for data manipulation ensures efficient handling of large datasets. NumPy and Numba are used for optimized numerical computations where applicable.
 
-Task 4: Performance Analysis
-
-a) Read the data of each ticker (stocks.csv) into a Pandas DataFrame.
-b) Calculate daily profit/loss on each ticker assuming stock has been bought with 1 quantity on the first day and add a column 'pnl'
-c) Calculate and add cumulative profit/loss column
-d) Calculate and add the drawdown column
-e) Added column must reflect on data/{Name}.csv
+Extendability: The project can be extended by adding new functions in data_processing.py for additional analyses or modifying existing functions to accommodate different data structures or computations.
 
 
-Submission:
 
-Submit your solution as a Python file and output files along with a README file explaining any assumptions made, how to run the code, and any additional comments you'd like to add about your implementation choices.
+## Summary of Implementation
+This project focuses on quantitative analysis of stock data, including data exploration, manipulation, time series analysis, data merging, and performance analysis. The main tasks covered are:
+
+### Data Exploration and Manipulation:
+
+Reading stock data from 'stocks.csv'.
+Calculating average closing prices and daily percentage changes for each ticker.
+Resampling data to monthly frequency and calculating rolling averages.
+Data Merging and Joining:
+
+Merging fundamental data from 'fundamentals.csv' and price data from 'prices.csv' based on a common identifier ('Ticker').
+Calculating market capitalization based on 'Shares Outstanding' and 'Price'.
+Performance Analysis:
+
+Calculating profit/loss, cumulative profit/loss, and drawdowns for each ticker.
+Saving individual ticker data and plotting cumulative profit/loss and drawdowns.
+Key Components and Functions
+Data Processing (data_processing.py):
+
+Includes functions for reading data, calculating averages, percentage changes, resampling, merging, market capitalization, profit/loss, cumulative profit/loss, drawdowns, saving data, and plotting.
+Main Script (main.py):
+
+Executes the workflow by sequentially calling functions defined in data_processing.py.
+Handles file existence checks and error logging.
+Assumptions Made
+Data Consistency: It is assumed that input data ('stocks.csv', 'fundamentals.csv', 'prices.csv') are structured with expected columns ('Ticker', 'Date', 'Close', 'Shares Outstanding', 'Price') and that they are consistent in format and structure.
+
+Performance Considerations: Utilizing Pandas for data manipulation ensures efficient handling of large datasets, while NumPy and Numba optimize specific computations for performance where applicable.
+
+Extendability: The code can be extended by adding more functions in data_processing.py for additional analyses or by modifying existing functions to accommodate different data formats or calculations.
+
+#
