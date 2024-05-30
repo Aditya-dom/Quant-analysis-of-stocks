@@ -1,0 +1,4 @@
+{
+    "inference.model": "codellama:7b-code-fp16",
+    "inference.custom.format": "codellama"
+}
