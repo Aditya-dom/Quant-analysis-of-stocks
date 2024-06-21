@@ -3,7 +3,7 @@ This project is designed for quantitative analysis of stock data, covering vario
 
 ## Project Structure
 ``` 
-your_project/
+Quant-analysis-of-stocks/
 ├── main.py
 ├── data_processing.py
 ├── data/
